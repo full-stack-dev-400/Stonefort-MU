@@ -7,7 +7,7 @@ import Maya from "@/public/images/Maya.webp";
 import UPI from "@/public/images/UPI.webp";
 import Visa from "@/public/images/Visa.webp";
 import BankTransfer from "@/public/images/Bank-Transfer.webp";
-import Bitcoin from "@/public/images/Bitcoin.webp";
+import Bitcoin from "@/public/images/BitCoin.png";
 import Cryptos from "@/public/images/Cryptos.webp";
 import FAB from "@/public/images/FAB.webp";
 import GPay from "@/public/images/G-Pay.webp";
@@ -66,10 +66,27 @@ export default function Clients() {
 
         {/* ========= New Heading + Description + Points ========= */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-[white] mb-4">
+<h2
+  className="
+    text-[white]
+    pb-4 font-semibold leading-[1.05]
+
+    max-sm:text-[24px]
+    text-[24px]
+    sm:text-[40px]
+    md:text-[52px]
+    lg:text-[64px]
+  "
+>
             Your Funds, Your Control
           </h2>
-          <p className="text-lg text-white/80 max-w-2xl mx-auto">
+                      <p           className="
+            max-w-3xl mx-auto mt-3 
+            text-[#fff]
+            text-[20px]      /* ← set text to exactly 20px */
+            leading-[1.5]    /* optional: smoother reading */
+          "
+          >
             Your money, your way: secure, seamless, and always accessible.
           </p>
 
@@ -129,7 +146,7 @@ export default function Clients() {
         />
 
         {/* =================== Infinite Scrolling Logos =================== */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
           <div
             className="
               inline-flex w-full flex-nowrap overflow-hidden items-center

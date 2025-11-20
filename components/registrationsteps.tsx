@@ -83,10 +83,30 @@ export default function StepCards() {
     <section className="mx-auto max-w-6xl px-6 py-20 text-center">
       {/* Heading */}
       <div className="mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-white">
+          <h2             
+          className="
+            bg-clip-text text-transparent bg-gradient-to-r 
+            from-slate-200/60 via-slate-200 to-slate-200/60 
+            pb-4 font-semibold leading-[1.05]
+
+            max-sm:text-[24px]   /* ← FORCE smaller on mobile */
+            text-[24px]          /* default */
+            sm:text-[40px]
+            md:text-[52px]
+            lg:text-[64px]
+
+            "
+            >
           Open your account effortlessly
         </h2>
-        <p className="mt-2 text-[#DAE1B7] text-lg md:text-xl font-medium">
+            <p           
+            className="
+            max-w-3xl mx-auto mt-3 
+            text-slate-600
+            text-[20px]      /* ← set text to exactly 20px */
+            leading-[1.5]    /* optional: smoother reading */
+          "
+          >
           In four simple steps
         </p>
       </div>

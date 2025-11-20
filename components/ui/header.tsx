@@ -1,313 +1,202 @@
-import Link from 'next/link'
-import Logo from './logo'
+"use client";
 
-import MobileMenu from './mobile-menu'
-
+import Link from "next/link";
+import Logo from "./logo";
+import MobileMenu from "./mobile-menu";
+import MegaMenu from "../MegaMenu";
 
 export default function Header() {
-  return (
-    <header className="absolute w-full z-30">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
+return (
+<header className="absolute w-full z-30">
+<div className="max-w-6xl mx-auto px-4 sm:px-6">
+<div className="flex items-center justify-between h-16 md:h-20">
 
-          {/* Site branding */}
-          <div className="flex-1">
-            <Logo />
-          </div>
-
-          {/* Desktop navigation */}
-          <nav className="hidden md:flex md:grow">
-
-            {/* Desktop menu links */}
-            <ul className="flex grow justify-center flex-wrap items-center">
-            <li className="relative group">
-              <Link
-                href="#"
-                className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-              >
-                Client
-              </Link>
-
-              {/* Dropdown Menu */}
-              <ul className="absolute left-0 hidden group-hover:block bg-slate-800 shadow-lg rounded-md mt-2 w-48">
-                <li>
-                  <Link
-                    href="/account-type"
-                    className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                  >
-                    Account Type
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                  >
-                    Funding and Widthdrawal
-                  </Link>
-                </li>
-              </ul>
-            </li>
-              <li className="relative group">
-                <Link
-                  href="#"
-                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                >
-                  Products
-                </Link>
-
-                {/* Dropdown Menu */}
-                <ul className="absolute left-0 hidden group-hover:block bg-slate-800 shadow-lg rounded-md mt-2 w-56">
-                  <li>
-                    <Link
-                      href="/products/currencies"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Currencies
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/products/precious-metals"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Precious Metals
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/products/energies"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Energies
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/products/indices"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Indices
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/products/stocks"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Stocks
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/products/crypto-cfd"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Crypto CFD
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li className="relative group">
-                <Link
-                  href="#"
-                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                >
-                  Plateforms
-                </Link>
-
-                {/* Dropdown */}
-                <ul className="absolute left-0 hidden group-hover:block bg-slate-800 shadow-lg rounded-md mt-2 w-48">
-                  <li>
-                    <Link
-                      href="/plateforms/metatrader5"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      MetaTrader 5
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-
-              <li className="relative group">
-                <Link
-                  href="#"
-                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                >
-                  Tools
-                </Link>
-
-                {/* Dropdown Menu */}
-                <ul className="absolute left-0 hidden group-hover:block bg-slate-800 shadow-lg rounded-md mt-2 w-64">
-                  <li>
-                    <Link
-                      href="/tools/autochartist"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Autochartist
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/tools/economic-calendar"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Economic Calendar
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/tools/news-sentiment"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      News Sentiment
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/tools/performance-statistics"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Performance Statistics
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/tools/academy"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Academy
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-
-
-              <li className="relative group">
-                <Link
-                  href="/about"
-                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                >
-                  About Us
-                </Link>
-
-                {/* Dropdown Menu */}
-                <ul className="absolute left-0 hidden group-hover:block bg-slate-800 shadow-lg rounded-md mt-2 w-64">
-                  <li>
-                    <Link
-                      href="/about/discover-stonefort"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Discover Stonefort
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/about/events-sponsorships"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Events &amp; Sponsorships
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/about/careers"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Careers
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/about/legal"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Legal
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-
-              <li className="relative group">
-                <Link
-                  href="/integrations"
-                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                >
-                  Education
-                </Link>
-
-                {/* Dropdown Menu */}
-                <ul className="absolute left-0 hidden group-hover:block bg-slate-800 shadow-lg rounded-md mt-2 w-64">
-                  <li>
-                    <Link
-                      href="/education/trading-guides"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Trading Guides
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/education/technical-analysis"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Technical Analysis
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/education/fundamental-analysis"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Fundamental Analysis
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/education/glossary"
-                      className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 hover:text-white"
-                    >
-                      Glossary
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-
-              <li>
-                <Link className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out" href="#">Support</Link>
-              </li>
-
-              {/* <li>
-                <Link className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out" href="/pricing">Pricing</Link>
-              </li>
-              <li>
-                <Link className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out" href="/customers">Customers</Link>
-              </li>
-              <li>
-                <Link className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out" href="/changelog">Changelog</Link>
-              </li>  */}
-            </ul>
-
-          </nav>
-
-          {/* Desktop sign in links */}
-          <ul className="flex-1 flex justify-end items-center">
-            <li>
-              <Link className="btn text-[#ffffff] bg-gradient-to-r from-[#4D6E55]/80 via-[#4D6E55] to-[#4D6E55]/80 hover:bg-white w-full transition duration-150 ease-in-out group" href="/signin">Sign in</Link>
-            </li>
-            <li className="ml-6">
-              <Link className="btn text-[#ffffff] bg-gradient-to-r from-[#4D6E55]/80 via-[#4D6E55] to-[#4D6E55]/80 hover:bg-white w-full transition duration-150 ease-in-out group" href="/signup">
-                <span className="relative inline-flex items-center">
-                  Sign up <span className="tracking-normal text-purple-500 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">-&gt;</span>
-                </span>
-              </Link>
-            </li>
-          </ul>
-
-          <MobileMenu />
-
-        </div>
+      {/* Branding */}
+      <div className="flex-1">
+        <Logo />
       </div>
-    </header>
-  )
+
+      {/* Desktop Navigation */}
+      <nav className="hidden lg:flex lg:grow justify-center relative">
+
+
+        <ul className="flex items-center space-x-6">
+
+          {/* MARKET */}
+          <MegaMenu
+            label="Market"
+            group={{
+              title: "Market",
+              description:
+                "Explore global markets with institutional-grade pricing, deep liquidity, and advanced trading tools.",
+              button: "Learn More",
+              href: "/market",
+              columns: [
+                {
+                  heading: "Markets",
+                  items: [
+                    { label: "Forex CFD", href: "/markets/forex" },
+                    { label: "Indices CFD", href: "/markets/indices" },
+                    { label: "Metal CFD", href: "/markets/metals" },
+                    { label: "Stock CFD", href: "/markets/stocks" },
+                    { label: "Commodity CFD", href: "/markets/commodities" },
+                    { label: "Crypto CFD", href: "/markets/crypto" },
+                  ],
+                },
+                {
+                  heading: "Trading Conditions",
+                  items: [
+                    { label: "Spreads & Fees", href: "/trading/fees" },
+                    { label: "Execution Speed", href: "/trading/execution" },
+                    { label: "Market Hours", href: "/trading/hours" },
+                  ],
+                },
+              ],
+            }}
+          />
+
+          {/* PLATFORM */}
+          <MegaMenu
+            label="Platform"
+            group={{
+              title: "Platform",
+              description:
+                "Trade seamlessly on Stonefort’s advanced trading platform built for precision and speed.",
+              button: "Learn More",
+              href: "/platform",
+              columns: [
+                {
+                  heading: "Trading Platform",
+                  items: [
+                    { label: "MetaTrader 5", href: "/platform/mt5" },
+                    { label: "MetaTrader Web", href: "/platform/mt5-web" },
+                    { label: "SFX Mobile App", href: "/platform/mobile" },
+                    { label: "SFX Web", href: "/platform/web" },
+                  ],
+                },
+                {
+                  heading: "Trading Tools",
+                  items: [
+                    { label: "Auto Chartist", href: "/tools/autochartist" },
+                    { label: "Copy Trade", href: "/tools/copy-trade" },
+                    { label: "VPS Hosting", href: "/tools/vps" },
+                    { label: "Calculator", href: "/tools/calculator" },
+                  ],
+                },
+              ],
+            }}
+          />
+
+          {/* TRADING */}
+          <MegaMenu
+            label="Trading"
+            group={{
+              title: "Trading",
+              description:
+                "Trade with confidence using our secure infrastructure and competitive trading accounts.",
+              button: "Learn More",
+              href: "/trading",
+              columns: [
+                {
+                  heading: "Account Types",
+                  items: [
+                    { label: "Starter", href: "/trading/starter" },
+                    { label: "Advance", href: "/trading/advance" },
+                    { label: "Elite", href: "/trading/elite" },
+                    { label: "Demo", href: "/trading/demo" },
+                    { label: "PAMM", href: "/trading/pamm" },
+                  ],
+                },
+                {
+                  heading: "Extras",
+                  items: [
+                    { label: "Fund Your Account", href: "/funding" },
+                    { label: "Negative Balance Guard", href: "/nbp" },
+                    { label: "Trading Fees & Conditions", href: "/fees" },
+                  ],
+                },
+              ],
+            }}
+          />
+
+          {/* ACADEMY */}
+          <MegaMenu
+            label="Academy"
+            group={{
+              title: "Academy",
+              description:
+                "Master the markets with guides, webinars, e-books, and articles crafted for all skill levels.",
+              button: "Explore Academy",
+              href: "/academy",
+              columns: [
+                {
+                  heading: "Learning",
+                  items: [
+                    { label: "Overview", href: "/academy" },
+                    { label: "Articles", href: "/academy/articles" },
+                    { label: "E-Book", href: "/academy/ebook" },
+                    { label: "Trading Terms", href: "/academy/terms" },
+                    { label: "Blogs", href: "/academy/blogs" },
+                    { label: "Glossary", href: "/academy/glossary" },
+                  ],
+                },
+              ],
+            }}
+          />
+
+          {/* COMPANY */}
+          <MegaMenu
+            label="Company"
+            group={{
+              title: "Company",
+              description:
+                "Stonefort Securities delivers a secure, high-performance trading environment with a global presence.",
+              button: "About Us",
+              href: "/about",
+              columns: [
+                {
+                  heading: "About",
+                  items: [
+                    { label: "About Us", href: "/about" },
+                    { label: "Regulatory Supervision", href: "/about/regulatory" },
+                    { label: "Legal Documents", href: "/about/legal" },
+                    { label: "Contact Us", href: "/about/contact" },
+                    { label: "Privacy Policy", href: "/about/privacy" },
+                  ],
+                },
+              ],
+            }}
+          />
+
+          {/* PROMOTIONS */}
+          <MegaMenu
+            label="Promotions"
+            group={{
+              title: "Promotions",
+              description:
+                "Boost your trading experience with exclusive Stonefort rewards and loyalty benefits.",
+              button: "View Promotions",
+              href: "/promotions",
+              columns: [
+                {
+                  heading: "Offers",
+                  items: [
+                    { label: "Bonus", href: "/promotions/bonus" },
+                    { label: "Loyalty Program", href: "/promotions/loyalty" },
+                  ],
+                },
+              ],
+            }}
+          />
+
+        </ul>
+      </nav>
+
+      {/* Mobile Menu */}
+      <MobileMenu />
+
+    </div>
+  </div>
+</header>
+);
 }

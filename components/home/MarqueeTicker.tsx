@@ -2,18 +2,35 @@
 
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
+import Image from "next/image";
+
+import SpeedImg from "@/public/images/speed.webp";
+import ToolsImg from "@/public/images/funds.webp";
+import DepositImg from "@/public/images/deposit.webp";
+import FundsImg from "@/public/images/funds.webp";
+import InstrumentsImg from "@/public/images/instruments.webp";
+import SupportImg from "@/public/images/support.webp";
+import RegulatedImg from "@/public/images/regulated.webp";
+import NegativeImg from "@/public/images/negative.webp";
+import LeverageImg from "@/public/images/leverage.webp";
+import SpreadImg from "@/public/images/spread.webp";
+
+
+
+
 const ITEMS = [
-  { label: 'Speed of Implementation', value: '<30 ms' },
-  { label: 'Trading Tools', value: '50+' },
-  { label: 'Minimum Deposit', value: '$50' },
-  { label: 'Segregated Clients Funds', value: '100%' },
-  { label: 'Trading Instruments', value: '1500+' },
-  { label: 'Customer Support', value: '24/7 Multilingual' },
-  { label: 'Regulated By', value: 'SCA, FSC, St. Lucia, St. Vincent' },
-  { label: 'Negative Balance', value: 'Protection' },
-  { label: 'Leverage', value: '1:1000' },
-  { label: 'Tightest Spreads', value: 'From 0.4 Pips' },
+  { label: "Speed of Implementation", value: "<30 ms", img: SpeedImg },
+  { label: "Trading Tools", value: "50+", img: ToolsImg },
+  { label: "Minimum Deposit", value: "$50", img: DepositImg },
+  { label: "Segregated Clients Funds", value: "100%", img: FundsImg },
+  { label: "Trading Instruments", value: "1500+", img: InstrumentsImg },
+  { label: "Customer Support", value: "24/7 Multilingual", img: SupportImg },
+  { label: "Regulated By", value: "SCA, FSC, St. Lucia, St. Vincent", img: RegulatedImg },
+  { label: "Negative Balance", value: "Protection", img: NegativeImg },
+  { label: "Leverage", value: "1:1000", img: LeverageImg },
+  { label: "Tightest Spreads", value: "From 0.4 Pips", img: SpreadImg },
 ];
+
 
 function Row() {
   return (
@@ -28,10 +45,22 @@ function Row() {
             min-w-[220px]
           "
         >
-          <span className="block text-[11px] sm:text-[14px] uppercase tracking-[0.3px] text-[#fff] leading-snug whitespace-normal">
+          {/* Icon */}
+          <Image
+            src={item.img}
+            alt={item.label}
+            className="mx-auto mb-2"
+            width={65}
+            height={65}
+          />
+
+          {/* Label */}
+          <span className="block text-[16px] sm:text-[17px] font-bold uppercase tracking-[0.3px] text-[#4d6e55] leading-snug whitespace-normal">
             {item.label}
           </span>
-          <span className="text-[15px] sm:text-[16px] font-semibold text-[#fff] mt-1 whitespace-nowrap">
+
+          {/* Value */}
+          <span className="text-[14px] sm:text-[15px] font-semibold text-[#4d6e55] mt-1 whitespace-nowrap">
             {item.value}
           </span>
         </div>
@@ -40,8 +69,9 @@ function Row() {
   );
 }
 
+
 export default function MarqueeTicker({
-  speedSeconds = 60,
+  speedSeconds = 250,
   className = '',
 }: {
   speedSeconds?: number;
@@ -84,13 +114,13 @@ export default function MarqueeTicker({
     const vp = viewportRef.current;
     if (!vp) return;
     vp.style.setProperty('--sf-speed', `${speedSeconds}s`);
-    vp.style.setProperty('--sf-h', '64px');
+     vp.style.setProperty('--sf-h', '150px');
     vp.style.setProperty('--rowpx', `${rowPx}px`);
     vp.style.setProperty('--sf-sep', 'rgba(255,255,255,0.3)');
   }, [rowPx, speedSeconds]);
 
   return (
-    <div className={`relative w-full overflow-hidden bg-[#4d6e55] ${className}`}>
+    <div className={`relative w-full overflow-hidden bg-[transparent] ${className}`}>
       <div className="viewport" ref={viewportRef}>
         {/* Track A: 0 -> -rowPx */}
         <div className={`track trackA ${rowPx ? 'run' : ''}`}>
@@ -170,21 +200,47 @@ export default function MarqueeTicker({
           animation-play-state: paused;
         }
 
-        .fade {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          width: 48px;
-          pointer-events: none;
-        }
-        .fade.left {
-          left: 0;
-          background: linear-gradient(to right, #88918b 0%, rgba(136, 145, 139, 0) 100%);
-        }
-        .fade.right {
-          right: 0;
-          background: linear-gradient(to left, #88918b 0%, rgba(136, 145, 139, 0) 100%);
-        }
+.fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 250px; /* desktop / large screens */
+  pointer-events: none;
+}
+
+/* Mobile: reduce faded area width */
+@media (max-width: 640px) {
+  .fade {
+    width: 90px; /* smaller fades on mobile */
+  }
+}
+
+
+/* LEFT SIDE */
+.fade.left {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1) 0%,     /* strong white */
+    rgba(255, 255, 255, 0.85) 40%,
+    rgba(255, 255, 255, 0.4) 70%,
+    rgba(255, 255, 255, 0) 100%    /* fully transparent */
+  );
+}
+
+/* RIGHT SIDE */
+.fade.right {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(255, 255, 255, 1) 0%,     /* strong white */
+    rgba(255, 255, 255, 0.85) 40%,
+    rgba(255, 255, 255, 0.4) 70%,
+    rgba(255, 255, 255, 0) 100%    /* fully transparent */
+  );
+}
+
+
 
         .measure {
           position: absolute;

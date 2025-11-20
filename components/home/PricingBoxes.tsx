@@ -1,21 +1,50 @@
 // components/home/PricingBoxes.tsx
 "use client";
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-
 // Badges
-import BronzeBadge from "@/public/images/Bronze.webp";
-import SilverBadge from "@/public/images/Silver.webp";
-import GoldBadge from "@/public/images/Gold.webp";
+import BronzeBadge from "@/public/images/Starter.webp";
+import SilverBadge from "@/public/images/Advance.webp";
+import GoldBadge from "@/public/images/Elite.webp";
 
-// Full-bleed background image
-import BgImage from "@/public/images/accountBG.jpg";
+// 3 plates (separate PNGs)
+import ElitePlate from "@/public/images/Elite.webp";
+import AdvancedPlate from "@/public/images/Advance.webp";
+import StarterPlate from "@/public/images/Starter.webp";
 
 const SF_GREEN = "#4D6E55";
 
+/* ---------- Types ---------- */
+
 type RowProps = { left: string; right: string };
+
+type TierId = "starter" | "advanced" | "elite";
+
+type CardDef = {
+  title: string;
+  subtitle: string;
+  badge: any;
+  rows: [string, string][];
+  tier: TierId;
+};
+
+const PLATE_IMAGES: Record<TierId, any> = {
+  elite: ElitePlate,
+  advanced: AdvancedPlate,
+  starter: StarterPlate,
+};
+
+// order of plates for each active card
+function getOrder(active: TierId): TierId[] {
+  if (active === "elite") return ["elite", "advanced", "starter"]; // Elite top
+  if (active === "advanced") return ["advanced", "elite", "starter"]; // Advanced top
+  return ["starter", "advanced", "elite"]; // Starter top
+}
+
+/* ---------- Small UI bits ---------- */
+
 const Row = ({ left, right }: RowProps) => (
   <div className="flex items-center justify-between gap-6 transition-colors duration-300 text-slate-700 group-hover:text-white">
     <span className="whitespace-nowrap">{left}</span>
@@ -23,17 +52,21 @@ const Row = ({ left, right }: RowProps) => (
   </div>
 );
 
+/* ---------- Card wrapper with glow ---------- */
+
 function HoverGlowCard({
   children,
   className = "",
   featured = false,
   badgeSrc,
   title,
+  onHover,
 }: React.PropsWithChildren<{
   className?: string;
   featured?: boolean;
   badgeSrc?: any;
   title?: string;
+  onHover?: () => void;
 }>) {
   const onMove = (e: MouseEvent<HTMLDivElement>) => {
     const el = e.currentTarget;
@@ -53,12 +86,13 @@ function HoverGlowCard({
   const base =
     "group relative rounded-2xl border bg-white/90 shadow-[0_8px_30px_rgba(0,0,0,0.08)] backdrop-blur-[2px] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]";
   const hover = "hover:-translate-y-1 hover:scale-[1.01]";
-  // Tailwind-safe static token via CSS variable
-  const colors = "border-[var(--sf)] hover:bg-[var(--sf)] hover:border-[var(--sf)]";
+  const colors =
+    "border-[var(--sf)] hover:bg-[var(--sf)] hover:border-[var(--sf)]";
 
   return (
     <motion.div
       onMouseMove={onMove}
+      onMouseEnter={() => onHover && onHover()}
       initial={{ opacity: 0, y: 24, scale: 0.98 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true }}
@@ -68,14 +102,14 @@ function HoverGlowCard({
         hover,
         colors,
         featured
-          ? "ring-1 ring-[rgba(77,110,85,0.25)] shadow-[0_12px_60px_rgba(77,110,85,0.25)] -mt-6"
+          ? "ring-1 ring-[rgba(77,110,85,0.25)] shadow-[0_12px_60px_rgba(77,110,85,0.25)] -mt-4"
           : "",
         className,
       ].join(" ")}
       style={{
-        // give Tailwind a static token via var()
         ["--sf" as any]: SF_GREEN,
-        transform: "perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))",
+        transform:
+          "perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg))",
       }}
     >
       {/* live spotlight that follows the mouse */}
@@ -124,7 +158,7 @@ function HoverGlowCard({
         }}
       />
 
-      <div className="relative p-6 sm:p-8 transition-colors duration-300">
+      <div className="relative px-6 py-5 sm:px-7 sm:py-6 transition-colors duration-300">
         {/* top deco strip */}
         <div
           className="absolute left-0 right-0 -top-px h-[3px] rounded-t-2xl"
@@ -158,12 +192,70 @@ function HoverGlowCard({
   );
 }
 
+/* ---------- Background plates ---------- */
+
+function Plate({
+  id,
+  img,
+  slot,
+}: {
+  id: TierId;
+  img: any;
+  slot: number; // 0 = top, 1 = middle, 2 = bottom
+}) {
+  // more distance between plates
+  const slotStyles = [
+    {
+      translate: "-110px",
+      rotate: "-5deg",
+      scale: "1.05",
+      z: 30,
+    },
+    {
+      translate: "0px",
+      rotate: "-8deg",
+      scale: "0.97",
+      z: 20,
+    },
+    {
+      translate: "110px",
+      rotate: "-12deg",
+      scale: "0.92",
+      z: 10,
+    },
+  ][slot];
+
+  return (
+    <div
+      className="absolute inset-0 flex items-center justify-center transition-all duration-500"
+      style={{
+        zIndex: slotStyles.z,
+        transform: `translateY(${slotStyles.translate}) rotate(${slotStyles.rotate}) scale(${slotStyles.scale})`,
+        filter: "drop-shadow(0 30px 70px rgba(0,0,0,0.45))",
+      }}
+    >
+      <Image
+        src={img}
+        alt={`${id} plate`}
+        fill
+        className="object-contain pointer-events-none select-none"
+        sizes="(min-width: 1024px) 420px, 260px"
+      />
+    </div>
+  );
+}
+
+/* ---------- Main component ---------- */
+
 export default function PricingBoxes() {
-  const cards = [
+  const [activeTier, setActiveTier] = useState<TierId>("advanced");
+
+  const cards: CardDef[] = [
     {
       title: "Starter",
       subtitle: "Accounts",
       badge: BronzeBadge,
+      tier: "starter",
       rows: [
         ["Starts at", "$50"],
         ["Leverage", "1:500"],
@@ -177,6 +269,7 @@ export default function PricingBoxes() {
       title: "Advanced",
       subtitle: "Accounts",
       badge: SilverBadge,
+      tier: "advanced",
       rows: [
         ["Starts at", "$3000"],
         ["Leverage", "1:500"],
@@ -190,6 +283,7 @@ export default function PricingBoxes() {
       title: "Elite",
       subtitle: "Accounts",
       badge: GoldBadge,
+      tier: "elite",
       rows: [
         ["Starts at", "$10,000"],
         ["Leverage", "1:200"],
@@ -199,47 +293,69 @@ export default function PricingBoxes() {
         ["Margin Call", "70%"],
       ],
     },
-  ] as const;
+  ];
+
+  const ordered = getOrder(activeTier); // [top, middle, bottom]
 
   return (
     <section className="relative py-32 overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0 -z-20">
-        <Image src={BgImage} alt="" priority fill sizes="100vw" className="object-cover" />
-        <span className="absolute inset-0 bg-white/10" />
-      </div>
+      {/* Plates background with hover logic */}
+<div className="pointer-events-none absolute inset-y-0 left-[-10px] md:left-[-10px] z-10 flex items-center justify-start">
+  <div className="relative w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] md:w-[420px] md:h-[420px]">
+    {ordered.map((id, index) => (
+      <Plate key={id} id={id} img={PLATE_IMAGES[id]} slot={index} />
+    ))}
+  </div>
+</div>
+
 
       {/* Aurora / gradient fog */}
       <div
-        className="absolute -top-20 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] -z-10 blur-3xl opacity-50"
+        className="absolute -top-20 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] z-5 blur-3xl opacity-50"
         style={{
           background: `radial-gradient(closest-side, ${SF_GREEN}33, transparent 70%)`,
         }}
       />
       <div
-        className="absolute bottom-[-200px] right-[-200px] w-[700px] h-[700px] -z-10 blur-3xl opacity-40"
+        className="absolute bottom-[-200px] right-[-200px] w-[700px] h-[700px] z-5 blur-3xl opacity-40"
         style={{
           background: `radial-gradient(closest-side, #87AB9333, transparent 70%)`,
         }}
       />
 
-      {/* Particles */}
-     
-
       {/* Content */}
       <motion.div
-        className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6"
+        className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-[#101711] mb-3">
+          <h2
+            className="
+              bg-clip-text text-transparent bg-gradient-to-r 
+              from-slate-200/60 via-slate-200 to-slate-200/60 
+              pb-4 font-semibold leading-[1.05]
+              max-sm:text-[24px]
+              text-[24px]
+              sm:text-[40px]
+              md:text-[52px]
+              lg:text-[64px]
+            "
+          >
             Find Your Perfect Trading Account
           </h2>
-          <p className="text-slate-700 max-w-2xl mx-auto text-lg">
-            Find the ideal Stonefort Securities account tailored to your trading style, built for flexibility, transparency, and performance.
+          <p
+            className="
+              max-w-3xl mx-auto mt-3 
+              text-slate-600
+              text-[20px]
+              leading-[1.5]
+            "
+          >
+            Find the ideal Stonefort Securities account tailored to your trading
+            style, built for flexibility, transparency, and performance.
           </p>
         </div>
 
@@ -248,12 +364,13 @@ export default function PricingBoxes() {
             const featured = i === 1; // Advanced
             return (
               <HoverGlowCard
-                key={i}
+                key={c.title}
                 featured={featured}
                 badgeSrc={c.badge}
                 title={c.title}
+                onHover={() => setActiveTier(c.tier)}
               >
-                <div className="mb-6 flex items-start justify-between gap-4">
+                <div className="mb-4 flex items-start justify-between gap-4">
                   <div>
                     <h3 className="text-2xl font-bold leading-none transition-colors duration-300 text-[#101711] group-hover:text-white">
                       {c.title}
@@ -270,9 +387,8 @@ export default function PricingBoxes() {
                   ))}
                 </div>
 
-                {/* subtle bottom gradient rail */}
                 <div
-                  className="mt-6 h-[6px] w-full rounded-full"
+                  className="mt-5 h-[6px] w-full rounded-full"
                   style={{
                     background: `linear-gradient(90deg, transparent, ${SF_GREEN}, transparent)`,
                     opacity: 0.5,

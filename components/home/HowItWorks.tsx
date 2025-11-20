@@ -9,15 +9,42 @@ export default function HowItWorks() {
 
         {/* =================== Heading =================== */}
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white">
+                    <h2             
+          className="
+            bg-clip-text text-transparent bg-gradient-to-r 
+            from-slate-200/60 via-slate-200 to-slate-200/60 
+            pb-4 font-semibold leading-[1.05]
+
+            max-sm:text-[24px]   /* ← FORCE smaller on mobile */
+            text-[24px]          /* default */
+            sm:text-[40px]
+            md:text-[52px]
+            lg:text-[64px]
+
+            "
+            >
             How It Works
           </h2>
 
-          <p className="mt-4 text-[#4d6e55] tracking-[0.25em] uppercase text-sm font-semibold">
+                      <p           
+            className="
+            max-w-3xl mx-auto mt-3 
+            text-[#4d6e55]
+            text-[20px]      
+            leading-[1.5]   
+          "
+          >
             Getting Started with Stonefort Securities
           </p>
 
-          <p className="mt-5 text-slate-300 text-lg">
+                      <p           
+            className="
+            max-w-3xl mx-auto mt-3 
+            text-[#000]
+            text-[20px]      
+            leading-[1.5]   
+          "
+          >
             Follow our simple, step-by-step guide; create your account and begin
             trading in just 4 easy steps.
           </p>

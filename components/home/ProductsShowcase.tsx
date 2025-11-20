@@ -113,32 +113,82 @@ export default function ProductsShowcase() {
         />
       </div>
 
-      {/* LEFT side curved background image */}
-      <div className="pointer-events-none absolute inset-y-0  left-10 -z-10 hidden sm:flex items-center">
-        <div className="relative w-[220px] md:w-[280px] lg:w-[320px] h-[420px] md:h-[500px] -translate-x-10 md:-translate-x-16">
-          <Image
-            src={DiscoverBG}
-            alt=""
-            fill
-            className="object-contain drop-shadow-2xl"
-            sizes="320px"
-          />
-        </div>
-      </div>
+      {/* LEFT side curved background image (desktop / tablet only) */}
+<div className="pointer-events-none absolute inset-y-0 left-10 -z-10 hidden sm:flex items-center">
+  <div
+    className="
+      relative
+
+      /* MOBILE (<640px) */
+      w-[120px] h-[260px]
+
+      /* SMALL TABLET (640–767px) */
+      sm:w-[150px] sm:h-[300px]
+
+      /* TABLET (768–1023px) → smaller */
+      md:w-[170px] md:h-[320px]
+
+      /* DESKTOP (1024–1279px) */
+      lg:w-[220px] lg:h-[360px]
+
+      /* LARGE DESKTOP (1280px+) */
+      xl:w-[320px] xl:h-[500px]
+
+      /* POSITION */
+      -translate-y-[60px]
+      xl:translate-y-0
+      -translate-x-10 md:-translate-x-16
+    "
+  >
+    <Image
+      src={DiscoverBG}
+      alt=""
+      fill
+      className="object-contain drop-shadow-2xl"
+      sizes="320px"
+    />
+  </div>
+</div>
+
+
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         {/* Heading */}
         <div className="text-center mb-6 md:mb-8">
-          <h2 className="text-3xl md:text-6xl font-extrabold tracking-tight">
-            Our <span className="text-[#4D6E55]">Products</span>
-          </h2>
-          <p className="max-w-3xl mx-auto mt-3 text-slate-600">
-            Experience next-generation trading with{' '}
-            <strong>Stonefort Securities</strong>, advanced platforms built for
-            stability, precision, and speed. Enjoy ultra-tight spreads and deep
-            liquidity from top-tier banks and prime brokers for a competitive
-            edge in every trade.
-          </p>
+<h2
+  className="
+    bg-clip-text text-transparent bg-gradient-to-r 
+    from-slate-200/60 via-slate-200 to-slate-200/60 
+    pb-4 font-semibold leading-[1.05]
+
+    max-sm:text-[24px]   /* mobile small */
+    text-[24px]          /* base mobile */
+    sm:text-[40px]       /* small tablet */
+    md:text-[52px]       /* tablet */
+    lg:text-[64px]       /* desktop */
+
+  "
+>
+  Our <span className="text-[#4D6E55]">Products</span>
+</h2>
+
+
+
+        <p
+          className="
+            max-w-3xl mx-auto mt-3 
+            text-slate-600
+            text-[20px]      /* ← set text to exactly 20px */
+            leading-[1.5]    /* optional: smoother reading */
+          "
+        >
+          Experience next-generation trading with{' '}
+          <strong>Stonefort Securities</strong>, advanced platforms built for
+          stability, precision, and speed. Enjoy ultra-tight spreads and deep
+          liquidity from top-tier banks and prime brokers for a competitive
+          edge in every trade.
+        </p>
+
         </div>
 
         {/* Tabs */}
@@ -170,43 +220,50 @@ export default function ProductsShowcase() {
         </div>
 
         {/* Content area */}
-        <div className="relative z-10 max-w-4xl mx-auto min-h-[280px] md:min-h-[360px] lg:min-h-[420px] mt-6 md:mt-20">
+<div
+  className="
+    relative z-10 
+    max-w-4xl mx-auto
+    md:max-w-3xl
+    lg:max-w-4xl
 
-          <div className="grid md:grid-cols-12 items-center">
-            {/* Left text */}
-            <div className="order-1 md:col-span-7 pr-2 min-h-[350px]">
-              <AnimatePresence mode="wait">
-                <motion.h3
-                  key={active.key + '-title'}
-                  className="text-5xl md:text-6xl font-extrabold text-[#4d6e55]"
-                  initial="in"
-                  animate="center"
-                  exit="out"
-                  variants={variants}
-                  transition={{ duration: 0.45 }}
-                >
-                  {active.title}
-                </motion.h3>
-              </AnimatePresence>
+    mt-6 md:mt-20
 
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={active.key + '-text'}
-                  className="mt-5 text-slate-700 max-w-2xl"
-                  initial="in"
-                  animate="center"
-                  exit="out"
-                  variants={variants}
-                  transition={{ duration: 0.45, delay: 0.05 }}
-                >
-                  {active.blurb}
-                </motion.p>
-              </AnimatePresence>
-            </div>
+    /* NORMAL CONTENT PADDING */
+    px-4 sm:px-6 md:px-8
 
-            {/* Right image */}
-            <div className="order-2 md:col-span-5 md:justify-self-end mt-8 md:mt-0 min-h-[360px]">
-              <div className="relative w-50 h-50">
+    /* EXTRA SAFE SPACE FOR ARROWS */
+    md:px-12 
+ 
+  "
+>
+
+
+
+          <div className="grid md:grid-cols-12 items-center gap-8 md:gap-10">
+            {/* Right image comes first on mobile so text doesn't feel cramped */}
+            <div className="order-1 md:order-2 md:col-span-5 md:justify-self-end flex justify-center md:justify-end mt-2 md:mt-0">
+              <div
+                className="
+                  relative
+                  /* MOBILE: smallest */
+                  w-[160px] h-[160px]
+
+                  /* sm: slightly bigger */
+                  sm:w-[190px] sm:h-[190px]
+
+                  /* md (768px–1023px): still small */
+                  md:w-[200px] md:h-[200px]
+
+                  /* lg (1024+): normal size */
+                  lg:w-[280px] lg:h-[280px]
+
+                  /* xl (1280+): large size */
+                  xl:w-[320px] xl:h-[320px]
+                "
+              >
+
+
                 {/* Radial contrast backdrop */}
                 <div className="absolute inset-0 -z-10 pointer-events-none">
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,23,17,0.18),rgba(16,23,17,0.06)_55%,transparent_75%)]" />
@@ -216,9 +273,9 @@ export default function ProductsShowcase() {
                   <motion.div
                     key={active.key + '-img'}
                     className="absolute inset-0 z-10"
-                    initial={{ opacity: 0, x: 80, scale: 0.98 }}
+                    initial={{ opacity: 0, x: 80, scale: 0.96 }}
                     animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: -80, scale: 0.98 }}
+                    exit={{ opacity: 0, x: -80, scale: 0.96 }}
                     transition={{ duration: 0.45 }}
                   >
                     <Image
@@ -233,37 +290,128 @@ export default function ProductsShowcase() {
                 </AnimatePresence>
               </div>
             </div>
+
+            {/* Left text */}
+            <div className="order-2 md:order-1 md:col-span-7 pr-1 md:pr-4">
+              <AnimatePresence mode="wait">
+                <motion.h3
+                  key={active.key + '-title'}
+                  className="
+                    font-extrabold text-[#4d6e55]
+                    text-2xl
+                    sm:text-3xl
+                    md:text-4xl
+                    lg:text-5xl
+                    xl:text-6xl
+                  "
+                  
+                  initial="in"
+                  animate="center"
+                  exit="out"
+                  variants={variants}
+                  transition={{ duration: 0.45 }}
+                >
+                  {active.title}
+                </motion.h3>
+              </AnimatePresence>
+
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={active.key + '-text'}
+                  className="
+                    mt-3 md:mt-4
+                    text-slate-700 max-w-2xl
+                    text-xs
+                    sm:text-sm
+                    md:text-base
+                  "
+
+                  initial="in"
+                  animate="center"
+                  exit="out"
+                  variants={variants}
+                  transition={{ duration: 0.45, delay: 0.05 }}
+                >
+                  {active.blurb}
+                </motion.p>
+              </AnimatePresence>
+            </div>
           </div>
 
-          {/* Navigation Arrows */}
-          <button
-            aria-label="Previous"
-            onClick={() => go(-1)}
-            className="absolute left-1 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-slate-300 bg-white/80 backdrop-blur grid place-items-center hover:border-[#4D6E55] hover:text-[#4D6E55]"
+          {/* Navigation Arrows - same position but they won't overlap image now */}
+{/* Navigation Arrows - now placed OUTSIDE the content box on desktop */}
+{/* Prev Arrow */}
+<button
+  aria-label="Previous"
+  onClick={() => go(-1)}
+  className="
+    absolute
+    top-1/2 -translate-y-1/2
+
+    /* MOBILE: inside, but not too close to text */
+    left-2
+
+    /* TABLET (768–1023px): hug the container edge, not the text */
+    md:left-0
+
+    /* DESKTOP (1024px+): move further out */
+    lg:-left-10
+    xl:-left-14
+
+    w-9 h-9 md:w-10 md:h-10
+    rounded-full border border-slate-300
+    bg-white/80 backdrop-blur
+    grid place-items-center
+    hover:border-[#4D6E55] hover:text-[#4D6E55]
+  "
+>
+  ‹
+</button>
+
+
+
+{/* Next Arrow */}
+<button
+  aria-label="Next"
+  onClick={() => go(1)}
+  className="
+    absolute
+    top-1/2 -translate-y-1/2
+
+    /* MOBILE: inside */
+    right-2
+
+    /* TABLET (768–1023px): hug container edge */
+    md:right-0
+
+    /* DESKTOP (1024px+): move further out */
+    lg:-right-10
+    xl:-right-14
+
+    w-9 h-9 md:w-10 md:h-10
+    rounded-full border border-slate-300
+    bg-white/80 backdrop-blur
+    grid place-items-center
+    hover:border-[#4D6E55] hover:text-[#4D6E55]
+  "
+>
+  ›
+</button>
+
+
+
+
+        </div>
+
+        {/* CTA: separate on mobile so it never sits on top of the image/text */}
+        <div className="mt-8 flex justify-center md:mt-10">
+          <a
+            href="/register"
+            className="inline-flex items-center gap-2 px-6 py-3 text-[white] bg-[#4D6E55] rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-[#4D6E55] border border-[#4D6E55]"
           >
-            ‹
-          </button>
-          {/* Center Button */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
-
-            <a
-              href="/register"
-              className="inline-flex items-center gap-2 px-6 py-3 text-[white] bg-[#4D6E55] rounded-full font-semibold text-lg transition-all duration-300 hover:bg-white hover:text-[#4D6E55] border border-[#4D6E55]"
-            >
-              Open an Account
-              <span className="text-xl leading-none">→</span>
-            </a>
-          </div>
-
-          <button
-            aria-label="Next"
-            onClick={() => go(1)}
-            className="absolute right-1 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-slate-300 bg-white/80 backdrop-blur grid place-items-center hover:border-[#4D6E55] hover:text-[#4D6E55]"
-          >
-            ›
-          </button>
-
-
+            Open an Account
+            <span className="text-xl leading-none">→</span>
+          </a>
         </div>
       </div>
     </section>

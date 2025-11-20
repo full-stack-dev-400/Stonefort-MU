@@ -25,6 +25,7 @@ import EconomicCalendar from "@/components/home/EconomicCalendar";
 import BalanceGuard from "@/components/home/BalanceGuard";
 import HowItWorks from "@/components/home/HowItWorks";
 import AwardCertificate from "@/components/home/AwardCertificate";
+import AccountTiers from "@/components/home/AccountTiers";
 
 
 
@@ -63,12 +64,13 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <MarqueeTicker speedSeconds={26} />
+      <MarqueeTicker speedSeconds={58} />
       <ExpandCards />
       <ProductsShowcase />
       <EconomicCalendar />
       <PlatformsTabs />
       <PricingBoxes />
+      <AccountTiers />
       <HoverGlowCard /> 
       <Payment />  
       <DiscoverOpportunities />

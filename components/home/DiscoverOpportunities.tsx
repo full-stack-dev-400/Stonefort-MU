@@ -167,7 +167,19 @@ export default function StepCards() {
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <h2 className="text-4xl md:text-5xl font-bold text-black">
+        <h2             
+          className="
+            bg-clip-text text-transparent bg-gradient-to-r 
+            from-slate-200/60 via-slate-200 to-slate-200/60 
+            pb-4 font-semibold leading-[1.05]
+
+            max-sm:text-[24px]   /* ← FORCE smaller on mobile */
+            text-[24px]          /* default */
+            sm:text-[40px]
+            md:text-[52px]
+            lg:text-[64px]
+            "
+            >
           Partner with <span className="text-[#4d6e55]">Us</span>
         </h2>
       </motion.div>

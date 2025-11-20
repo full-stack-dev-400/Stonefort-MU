@@ -21,12 +21,29 @@ export default function BalanceGuard() {
             <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-[#fff]">
               Protection
             </p>
+            <h2
+              className="
+                text-[white]
+                pb-4 font-semibold leading-[1.05]
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-[white]">
+                max-sm:text-[24px]
+                text-[24px]
+                sm:text-[40px]
+                md:text-[52px]
+                lg:text-[64px]
+              "
+            >
               Stonefort Balance Guard
             </h2>
 
-            <p className="text-base md:text-lg text-[#fff]">
+            <p           
+            className="
+            max-w-3xl mx-auto mt-3 
+            text-[white]
+            text-[20px]      
+            leading-[1.5]   
+          "
+          >
               Your Stonefort Securities account includes{" "}
               
                 free Negative Balance Protection

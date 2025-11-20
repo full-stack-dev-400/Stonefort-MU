@@ -25,15 +25,34 @@ export default function Hero() {
       </div>
 
       {/* ===== Right-side Trading Element ===== */}
-      <div className="absolute right-0 bottom-0 md:bottom-12 lg:bottom-16 xl:bottom-20 -z-10">
+      <div
+        className="
+          absolute right-0
+          top-20 bottom-auto          /* BELOW 1440px → top-right with padding */
+          xl:top-auto xl:bottom-20    /* 1440px+ → bottom-right */
+          -z-10
+        "
+      >
         <Image
           src={TradingElement}
           alt="Trading Element"
           width={400}
           height={400}
-          className="object-contain opacity-95 pointer-events-none select-none"
+          className="
+            object-contain opacity-95 pointer-events-none select-none
+
+            /* BELOW 1440px → smaller */
+            w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px]
+
+            /* 1440px+ → normal size */
+            xl:w-[400px]
+          "
         />
       </div>
+
+
+
+
 
       {/* ===== Content ===== */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-32 pb-16 md:pt-52 md:pb-32 min-h-[520px] md:min-h-[640px] flex flex-col justify-between">
@@ -55,20 +74,39 @@ export default function Hero() {
             </div>
           </div>
 
-          <h1
-            className="h1 bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-4"
-            data-aos="fade-down"
-          >
-            Trade Limitless <br/>With Stonefor Securities
-          </h1>
+            <h1
+              className="
+                bg-clip-text text-transparent bg-gradient-to-r 
+                from-slate-200/60 via-slate-200 to-slate-200/60 
+                pb-4 font-semibold
+                leading-[1.05]     /* FIXED TIGHT LINE HEIGHT */
 
-          <p
-            className="text-lg text-slate-300 mb-8"
-            data-aos="fade-down"
-            data-aos-delay="200"
-          >
-            Unlock global market potential with our secure platform, expert support, and innovative trading tools; your gateway to smarter, more confident investing.
-          </p>
+                text-[32px]        /* Mobile */
+                sm:text-[40px]     /* Small screens */
+                md:text-[52px]     /* Tablets */
+                lg:text-[64px]     /* Laptops */
+                xl:text-[72px]     /* Large screens */
+                2xl:text-[80px]    /* Big desktops */
+              "
+              data-aos="fade-down"
+            >
+              Trade Limitless <br/>With Stonefor Securities
+            </h1>
+
+
+
+            <p
+              className="
+                text-[20px]        /* exact 20px */
+                text-slate-300 
+                mb-8
+              "
+              data-aos="fade-down"
+              data-aos-delay="200"
+            >
+              Unlock global market potential with our secure platform, expert support, and innovative trading tools; your gateway to smarter, more confident investing.
+            </p>
+
 
           {/* CTA buttons */}
           <div

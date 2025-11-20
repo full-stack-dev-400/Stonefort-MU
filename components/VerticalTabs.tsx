@@ -110,15 +110,35 @@ export default function VerticalTabs({
     >
       {/* Heading & intro text */}
       {(headingTitle || headingText) && (
-        <div className="max-w-3xl mx-auto text-center pt-16 pb-10">
-          {headingTitle && (
-            <h2
-              className="text-3xl md:text-4xl font-bold text-gray-900"
-              dangerouslySetInnerHTML={{ __html: headingTitle }}
-            />
-          )}
+        <div className="w-full mx-auto text-center pt-16 pb-10">
+
+        {headingTitle && (
+          <h2
+            className="
+    bg-clip-text text-transparent bg-gradient-to-r 
+    from-slate-200/60 via-slate-200 to-slate-200/60 
+    pb-4 font-semibold leading-[1.05]
+
+    max-sm:text-[24px]   /* ← FORCE smaller on mobile */
+    text-[24px]          /* default */
+    sm:text-[40px]
+    md:text-[52px]
+    lg:text-[64px]
+
+            "
+            dangerouslySetInnerHTML={{ __html: headingTitle }}
+          />
+        )}
+
           {headingText && (
-            <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+                        <p           
+            className="
+            max-w-3xl mx-auto mt-3 
+            text-gray-600
+            text-[20px]      
+            leading-[1.5]   
+          "
+          >
               {headingText}
             </p>
           )}
