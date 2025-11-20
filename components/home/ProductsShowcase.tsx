@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // Images for tabs and icons — replace the imports below with your actual image imports
 import BgWaves from '@/public/images/white-futuristic-building-line-texture-texture-3d-rendering.jpg';
 import CryptoPhone from '@/public/images/_image (1).webp';
-import ForexArrows from '@/public/images/forexx.webp';
+import ForexArrows from '@/public/images/forex.webp';
 import CommoditiesCorn from '@/public/images/_image (2).webp';
 import MetalsBars from '@/public/images/_image (3).webp';
 import ETFsPie from '@/public/images/_image (4).webp';
@@ -16,7 +16,7 @@ import StocksLogos from '@/public/images/_image (5).webp';
 // NEW: left background image
 import DiscoverBG from '@/public/images/dicoverbg.webp';
 
-import IconForex from '@/public/images/forexx.webp';
+import IconForex from '@/public/images/forex.webp';
 import IconCrypto from '@/public/images/_image (1).webp';
 import IconCommodities from '@/public/images/_image (2).webp';
 import IconETFs from '@/public/images/_image (4).webp';

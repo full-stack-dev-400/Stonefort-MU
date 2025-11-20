@@ -1,3 +1,4 @@
+// components/VerticalTabs.tsx
 "use client";
 
 import { useId, useState, useRef, KeyboardEvent, ReactNode } from "react";
@@ -111,46 +112,60 @@ export default function VerticalTabs({
       {/* Heading & intro text */}
       {(headingTitle || headingText) && (
         <div className="w-full mx-auto text-center pt-16 pb-10">
+          {headingTitle && (
+            <h2
+              className="
+                bg-clip-text text-transparent bg-gradient-to-r 
+                from-slate-200/60 via-slate-200 to-slate-200/60 
+                pb-4 font-semibold leading-[1.05]
 
-        {headingTitle && (
-          <h2
-            className="
-    bg-clip-text text-transparent bg-gradient-to-r 
-    from-slate-200/60 via-slate-200 to-slate-200/60 
-    pb-4 font-semibold leading-[1.05]
-
-    max-sm:text-[24px]   /* ← FORCE smaller on mobile */
-    text-[24px]          /* default */
-    sm:text-[40px]
-    md:text-[52px]
-    lg:text-[64px]
-
-            "
-            dangerouslySetInnerHTML={{ __html: headingTitle }}
-          />
-        )}
+                max-sm:text-[24px]
+                text-[24px]
+                sm:text-[40px]
+                md:text-[52px]
+                lg:text-[64px]
+              "
+              dangerouslySetInnerHTML={{ __html: headingTitle }}
+            />
+          )}
 
           {headingText && (
-                        <p           
-            className="
-            max-w-3xl mx-auto mt-3 
-            text-gray-600
-            text-[20px]      
-            leading-[1.5]   
-          "
-          >
+            <p
+              className="
+                max-w-3xl mx-auto mt-3 
+                text-gray-600
+                text-[20px]
+                leading-[1.5]
+              "
+            >
               {headingText}
             </p>
           )}
         </div>
       )}
 
+      {/* MAIN WRAPPER */}
       <div
-        className="flex bg-white rounded-[32px] shadow-[0_10px_40px_rgba(0,0,0,0.06)] border border-gray-200 overflow-hidden"
+        className="
+          flex flex-col md:flex-row
+          bg-white rounded-[32px]
+          shadow-[0_10px_40px_rgba(0,0,0,0.06)]
+          border border-gray-200
+          overflow-hidden
+        "
         style={{ isolation: "isolate" }}
       >
         {/* Left rail (tabs) */}
-        <div className="relative p-6 md:p-8 bg-neutral-100 w-[320px] shrink-0">
+        <div
+          className="
+            relative
+            w-full md:w-[320px]
+            shrink-0
+            p-4 sm:p-6 md:p-8
+            bg-neutral-100
+            border-b md:border-b-0 md:border-r border-gray-200
+          "
+        >
           <div className="pointer-events-none absolute -top-16 -left-16 w-72 h-72 rounded-full bg-white/60 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-12 -left-12 w-52 h-52 rounded-full bg-sky-100/60 blur-3xl" />
 
@@ -158,7 +173,7 @@ export default function VerticalTabs({
             ref={listRef}
             role="tablist"
             aria-orientation="vertical"
-            className="flex flex-col gap-6 mt-2"
+            className="flex flex-col gap-4 mt-2"
           >
             {items.map((tab, i) => {
               const selected = i === active;
@@ -236,8 +251,8 @@ export default function VerticalTabs({
         </div>
 
         {/* Right content panel */}
-        <div className="relative p-6 md:p-10 bg-neutral-50 flex-1 min-w-0">
-          <div className="h-full rounded-3xl bg-white border border-gray-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_10px_30px_rgba(0,0,0,0.04)] p-6 md:p-10">
+        <div className="relative flex-1 min-w-0 p-4 sm:p-6 md:p-10 bg-neutral-50">
+          <div className="h-full rounded-3xl bg-white border border-gray-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_10px_30px_rgba(0,0,0,0.04)] p-4 sm:p-6 md:p-10">
             {items.map((tab, i) => {
               const selected = i === active;
               return (
@@ -250,10 +265,10 @@ export default function VerticalTabs({
                   className="grid gap-6"
                 >
                   <div className="max-w-2xl">
-                    <h3 className="text-3xl font-bold text-gray-900">
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900">
                       {tab.title}
                     </h3>
-                    <p className="mt-3 text-lg text-gray-600">
+                    <p className="mt-3 text-base md:text-lg text-gray-600">
                       {tab.description}
                     </p>
                   </div>
@@ -333,16 +348,6 @@ export function PlatformsTabs() {
           ctaHref: "#",
           ctaLabel: "Open MT5",
         },
-        // {
-        //   id: "area",
-        //   label: "Web",
-        //   title: "Web",
-        //   description:
-        //     "Manage accounts, deposits, and withdrawals in one secure dashboard with full visibility and control.",
-        //   media: <FitImage src={SFXweb} alt="Web trader preview" />,
-        //   ctaHref: "#",
-        //   ctaLabel: "Open Dashboard",
-        // },
         {
           id: "mt5",
           label: "Client Portal",

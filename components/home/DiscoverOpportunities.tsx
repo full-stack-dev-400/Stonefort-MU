@@ -5,8 +5,8 @@ import React, { MouseEvent } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-// Background image
-import DiscoverBG from "@/public/images/dicoverbg.webp";
+// Full background image
+import PartnerImage from "@/public/images/partmerus.webp";
 
 const SF_GREEN = "#4D6E55";
 
@@ -140,60 +140,85 @@ export default function StepCards() {
   ];
 
   return (
-    <section className="relative mx-auto max-w-6xl px-6 py-20 overflow-visible">
-      {/* ✅ RIGHT-SIDE BACKGROUND IMAGE */}
-      <div className="pointer-events-none absolute bottom-0 right-0 z-0">
-        {/* <Image
-          src={DiscoverBG}
-          alt="Trading interface illustration"
-          className="w-[460px] h-auto object-contain"
-        /> */}
+    <section className="relative w-full py-32 overflow-hidden">
+      {/* ✅ Full background image (world map) */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <Image
+          src={PartnerImage}
+          alt="World trading background"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
       </div>
 
-      {/* Soft aurora behind everything */}
+      {/* Optional aurora / glow on top of bg */}
       <div
-        className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-[900px] w-[900px] 
+        className="pointer-events-none absolute -top-24 left-1/2 -z-20 h-[900px] w-[900px] 
         -translate-x-1/2 blur-3xl opacity-40"
         style={{
           background: `radial-gradient(closest-side, ${SF_GREEN}33, transparent 70%)`,
         }}
       />
 
-      {/* Heading */}
-      <motion.div
-        className="mb-12 text-center relative z-10"
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <h2             
-          className="
+      {/* ✅ Inner container limited to 1240px */}
+      <div className="relative z-10 mx-auto max-w-[1240px] px-6">
+        {/* Heading */}
+        <motion.div
+          className="mb-12 text-center"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <h2
+            className="
             bg-clip-text text-transparent bg-gradient-to-r 
             from-slate-200/60 via-slate-200 to-slate-200/60 
             pb-4 font-semibold leading-[1.05]
 
-            max-sm:text-[24px]   /* ← FORCE smaller on mobile */
-            text-[24px]          /* default */
+            max-sm:text-[24px]
+            text-[24px]
             sm:text-[40px]
             md:text-[52px]
             lg:text-[64px]
             "
-            >
-          Partner with <span className="text-[#4d6e55]">Us</span>
-        </h2>
-      </motion.div>
+          >
+            Partner with <span className="text-[#4d6e55]">Us</span>
+          </h2>
+        </motion.div>
 
-      {/* Cards */}
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 relative z-10">
-        {cards.map((card, i) => (
-          <DiscoverOpportunities
-            key={i}
-            index={i}
-            title={card.title}
-            text={card.text}
-          />
-        ))}
+        {/* Cards */}
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {cards.map((card, i) => (
+            <DiscoverOpportunities
+              key={i}
+              index={i}
+              title={card.title}
+              text={card.text}
+            />
+          ))}
+        </div>
+
+        {/* Trade Now Button */}
+        <div className="mt-14 flex justify-center">
+          <a
+            href="/register"
+            className="
+              inline-flex items-center justify-center
+              px-10 py-4 rounded-full
+              text-white font-semibold text-lg
+              bg-[#4D6E55]
+              shadow-[0_10px_25px_rgba(77,110,85,0.35)]
+              transition-all duration-300
+              hover:scale-105 hover:shadow-[0_15px_35px_rgba(77,110,85,0.55)]
+              active:scale-95
+            "
+          >
+            Trade Now
+          </a>
+        </div>
       </div>
     </section>
   );
